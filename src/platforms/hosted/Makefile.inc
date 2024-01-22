@@ -8,7 +8,8 @@ CFLAGS +=-I ./target
 # Architecture enables
 ENABLE_CORTEXAR := 1
 ENABLE_RISCV := 1
-# Target enables
+# Target family enables
+ENABLE_TI_SITARA := 1
 ENABLE_XILINX := 1
 
 # Clang requires some special handling here: -gnu means MinGW

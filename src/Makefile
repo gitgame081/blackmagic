@@ -2,8 +2,11 @@ PROBE_HOST ?= native
 PLATFORM_DIR = platforms/$(PROBE_HOST)
 VPATH += $(PLATFORM_DIR) target
 ENABLE_DEBUG ?= 0
+# Architecture enables
 ENABLE_CORTEXAR ?= 0
 ENABLE_RISCV ?= 0
+# Target family enables
+ENABLE_TI_SITARA ?= 0
 ENABLE_XILINX ?= 0
 
 SYS = $(shell $(CC) -dumpmachine)
@@ -103,6 +106,12 @@ CFLAGS += -DENABLE_CORTEXAR
 SRC +=           \
 	cortexar.c   \
 	renesas_rz.c
+
+ifeq ($(ENABLE_TI_SITARA), 1)
+CFLAGS += -DENABLE_TI_SITARA
+SRC +=        \
+	icepick.c
+endif
 
 ifeq ($(ENABLE_XILINX), 1)
 CFLAGS += -DENABLE_XILINX
